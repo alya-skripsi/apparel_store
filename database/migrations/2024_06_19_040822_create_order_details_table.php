@@ -18,7 +18,8 @@ class CreateOrderDetailsTable extends Migration
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('quantity');
-            $table->unsignedBigInteger('price');
+            $table->unsignedBigInteger('unitprice');
+            $table->unsignedBigInteger('subtotal');
             $table->timestamps();
         });
     }

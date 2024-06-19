@@ -16,7 +16,8 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('status')->default('PENDING');
+            $table->timestamp('order_date');
+            $table->string('order_status');
             $table->unsignedBigInteger('total_price');
             $table->timestamps();
         });
