@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+:root{
+    --bg : #ffffff;
+    --primary : #3E49A8;
+    --secondary : #EBF1FF;
+    --accent : #FF7BA7;
+    --text : #0c0c0c;
+}
+::-webkit-scrollbar{
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--primary);
+    border-radius: 5px;
+}
+
+body{
+    background-color: var(--bg);
+}
+
+.logo{
+    font-family: 'Lato', sans-serif;
+    font-size: 2rem;
+    color: var(--text);
+}
+
+.logo span{
+    color: var(--primary);
+}
+
+.icon{
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: var(--primary);
+}
+
+.btn-pri{
+    background-color: var(--primary);
+    color: var(--bg);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-wishlist{
+    background-color: var(--accent);
+    color: var(--bg);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bg-sec{
+    background-color: var(--primary);
+    color: var(--bg);
+}
+
+.btn-pri:hover{
+    background-color: #4954bd;
+}
+
+.bg-jumbo{
+    background-image: url('/image/banner-img1.webp');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+}
+
+.bg-jumbo-about{
+    background-image: url('/image/about-img1.webp');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+}
+
+.color-overlay{
+    background-color: rgba(0, 0, 0, 0.16);
+    color: var(--bg);
+}
+
+.text-title{
+    border-left: var(--primary) 5px solid;
+    padding-left: 0.5rem;
+}
+
+.card-service,
+.card-testimonial{
+    background-color: var(--secondary);
+    padding: 2rem 2.4rem;
+    border-radius: 5px;
+}
+
+.icon-service{
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+footer{
+    background-color: var(--primary);
+    color: var(--bg);
+    padding: 1rem 0;
+}
+
+.logo-social a{
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: white;
+}
+
+.list-unstyled a{
+    color: white;
+    text-decoration:none;
+}
+
+.reverse{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.card-title-about{
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #2A2F2F;
+}
+
+.card-why{
+    background-color: var(--secondary);
+    padding: 2rem 2.4rem;
+    border-radius: 5px;
+    height: 100%;
+}
+
+.icon-why{
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px){
+    .logo{
+        font-size: 1.4rem;
+    }
+    .icon{
+        font-size: 1rem;
+    }
+    .card-title-about{
+        font-size: 2.6rem;
+    }
+    .title-section{
+        margin-top: 1rem;
+    }
+    .login_img{
+        display: none;
+    }
+}
