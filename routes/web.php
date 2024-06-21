@@ -2,12 +2,13 @@
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RegistController;
-use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardProductController;
 
 /*
@@ -83,14 +84,16 @@ Route::post('/cart/change-qty/{cart:id}', [CartController::class, 'changeQty'])-
 
 
 // Dashboard
-Route::get('/dashboard', function(){
-    return view('dashboard.index',[
-        'title' => 'Dashboard',
-        'active' => 'dashboard'
-    ]);
-})->middleware('auth');
-Route::resource('/dashboard/products', DashboardProductController::class)->middleware('auth');
-Route::get('/dashboard/products/checkSlug', [DashboardProductController::class, 'checkSlug'])->middleware('auth');
+Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
+    Route::get('/', function () {
+        return view('dashboard.index',[
+            'title' => 'Dashboard',
+            'active' => 'dashboard'
+        ]);
+    });
+    Route::resource('categories', AdminCategoryController::class);
+    Route::resource('products', DashboardProductController::class);
+});
 
 // Checkout
 Route::middleware(['auth'])->group(function () {

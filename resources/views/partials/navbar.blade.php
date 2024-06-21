@@ -11,7 +11,9 @@
                     <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                    @can('admin')
+                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                    @endcan
                     <li><a class="dropdown-item" href="/setting">Setting</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
