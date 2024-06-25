@@ -3,41 +3,49 @@
 <div class="row">
     <div class="col-lg-8">
         <h2>Cart</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($carts as $cart)
-                    <tr>
-                        <input type="hidden" value="{{ $cart->id }}">
-                        <td>{{ $cart->product->name }}</td>
-                        <td>Rp. {{ number_format($cart->product->price) }}</td>
-                        <td>
-                            <div class="input-group text-center mb-3" style="width: 130px;">
-                                <button class="btn btn-secondary decre-btn" type="button">-</button>
-                                <input type="text" name="qty" id="qty" class="form-control qty-input" value="{{ $cart->quantity }}">
-                                <button class="btn btn-secondary incre-btn" type="button">+</button>
-                            </div>
-                        </td>
-                        <td>Rp. {{ number_format($cart->product->price * $cart->quantity) }}</td>
-                        <td>
-                            <form action="/cart/{{ $cart->id }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="card">
+            <div class="card-body">
+                @if ($carts->isEmpty())
+                    <div class="alert alert-danger">Your Cart is empty</div>
+                @else
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($carts as $cart)
+                                <tr>
+                                    <input type="hidden" value="{{ $cart->id }}">
+                                    <td>{{ $cart->product->name }}</td>
+                                    <td>Rp. {{ number_format($cart->product->price) }}</td>
+                                    <td>
+                                        <div class="input-group text-center mb-3" style="width: 130px;">
+                                            <button class="btn btn-secondary decre-btn" type="button">-</button>
+                                            <input type="text" name="qty" id="qty" class="form-control qty-input" value="{{ $cart->quantity }}">
+                                            <button class="btn btn-secondary incre-btn" type="button">+</button>
+                                        </div>
+                                    </td>
+                                    <td>Rp. {{ number_format($cart->product->price * $cart->quantity) }}</td>
+                                    <td>
+                                        <form action="/cart/{{ $cart->id }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
+            </div>
+        </div>
     </div>
     <div class="col-lg-4 mt-5">
         <div class="card">

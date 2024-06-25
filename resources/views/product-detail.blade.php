@@ -16,9 +16,11 @@
         <h2> {{ $product->name }} </h2>
         <p class="lead">Rp. {{ number_format($product->price, 0, ',', '.') }}</p>
         {!! $product->description !!}
+        <hr>
+        <h5>Stock : {{ $product->stock }}</h5>
         <form action="/cart/add/{{ $product->slug }}" method="post">
             @csrf
-            <div class="mt-3">
+            <div class="my-3">
                 <label for="size">Size :</label>
                 <select name="size" id="size" class="form-select" style="width: 100px;">
                     <option value="s">S</option>
@@ -35,7 +37,11 @@
                     <button class="btn btn-dark incre-btn" type="button">+</button>
                 </div>
             </div>
-            <button class="btn-pri text-decoration-none" id="addtoCart" type="submit"><i class="fas fa-shopping-cart me-1"></i> Add to Cart</button>
+            @if ($product->stock > 0)
+                <button class="btn-pri text-decoration-none" id="addtoCart" type="submit"><i class="fas fa-shopping-cart me-1"></i> Add to Cart</button>
+            @else
+                <button class="btn btn-secondary disabled" id="addtoCart" type="submit" disabled><i class="fas fa-shopping-cart me-1"></i>Out Of Stock</button>
+            @endif
         </form>
         <form action="/wishlist/add/{{ $product->slug }}" method="post">
             @csrf

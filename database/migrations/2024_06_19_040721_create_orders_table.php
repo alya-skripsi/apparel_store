@@ -15,10 +15,18 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->timestamp('order_date');
-            $table->string('order_status');
-            $table->unsignedBigInteger('total_price');
+            $table->foreignId('user_id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('no_hp');
+            $table->string('address1');
+            $table->string('address2')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
+            $table->unsignedBigInteger('subtotal')->default(0);
+            $table->tinyInteger('status')->default(0);
+            $table->string('message')->nullable();
+            $table->string('tracking_number')->nullable();
             $table->timestamps();
         });
     }
