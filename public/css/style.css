@@ -8,9 +8,9 @@
 
 :root{
     --bg : #ffffff;
-    --primary : #3E49A8;
+    --primary : #5a7e9d;
     --secondary : #EBF1FF;
-    --accent : #FF7BA7;
+    --accent : #ff6bc4;
     --text : #0c0c0c;
 }
 ::-webkit-scrollbar{
@@ -46,7 +46,7 @@ body{
     background-color: var(--primary);
     color: var(--bg);
     padding: 0.5rem 1rem;
-    border: none;
+    border: 2px solid var(--primary);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -56,7 +56,7 @@ body{
     background-color: var(--accent);
     color: var(--bg);
     padding: 0.5rem 1rem;
-    border: none;
+    border: 2px solid var(--accent);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -68,7 +68,19 @@ body{
 }
 
 .btn-pri:hover{
-    background-color: #4954bd;
+    background-color: #4d6f8f;
+}
+
+.btn-outline-sec{
+    background-color: #d1dce6;
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--primary);
+    border-radius: 5px;
+}
+
+.btn-outline-sec:hover{
+    background-color: #c4d1db;
 }
 
 .bg-jumbo{

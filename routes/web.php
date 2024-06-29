@@ -3,11 +3,9 @@
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminCategoryController;
@@ -97,10 +95,6 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
 // Checkout
 Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-    Route::post('/checkout', [CheckoutController::class, 'store']);
-    Route::post('/place-order', [CheckoutController::class, 'placeOrder']);
-    Route::get('/my-order', [UserController::class, 'index']);
-    Route::get('/view-order',[UserController::class, 'view'])->name('order.view');
 });
 
 

@@ -16,8 +16,8 @@
         <h2> {{ $product->name }} </h2>
         <p class="lead">Rp. {{ number_format($product->price, 0, ',', '.') }}</p>
         {!! $product->description !!}
+        <p class="mt-4">Category :  <span class="badge text-bg-info">{{ $product->category->name }} </span> </p>
         <hr>
-        <h5>Stock : {{ $product->stock }}</h5>
         <form action="/cart/add/{{ $product->slug }}" method="post">
             @csrf
             <div class="my-3">
@@ -29,16 +29,21 @@
                     <option value="xl">XL</option>
                 </select>
             </div>
-            <div class="mt-3">
-                <label for="qty">Quantity :</label>
-                <div class="input-group text-center mb-3" style="width: 130px;">
-                    <button class="btn btn-dark decre-btn" type="button">-</button>
-                    <input type="text" name="qty" id="qty" class="form-control qty-input text-center" value="1">
-                    <button class="btn btn-dark incre-btn" type="button">+</button>
+            <div class="div d-flex align-items-center">
+                <div class="mt-3">
+                    <label for="qty">Quantity :</label>
+                    <div class="input-group text-center mb-3" style="width: 130px;">
+                        <button class="btn-pri decre-btn" type="button">-</button>
+                        <input type="text" name="qty" id="qty" class="form-control qty-input text-center" value="1">
+                        <button class="btn-pri incre-btn" type="button">+</button>
+                    </div>
                 </div>
+                <h6 class="ms-3 mt-4">Stock Available : {{ $product->stock }}</h6>
             </div>
+            
             @if ($product->stock > 0)
-                <button class="btn-pri text-decoration-none" id="addtoCart" type="submit"><i class="fas fa-shopping-cart me-1"></i> Add to Cart</button>
+                <button class="btn-outline-sec text-decoration-none" id="addtoCart" type="submit"><i class="fas fa-shopping-cart me-1"></i> Add to Cart</button>
+                <button class="btn-pri">Buy Now</button>
             @else
                 <button class="btn btn-secondary disabled" id="addtoCart" type="submit" disabled><i class="fas fa-shopping-cart me-1"></i>Out Of Stock</button>
             @endif

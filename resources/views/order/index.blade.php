@@ -18,7 +18,7 @@
                                 <td>Rp. {{ number_format($item->subtotal) }}</td>
                                 <td> {{$item->status == '0' ? 'pending':'completed'}} </td>
                                 <td>
-                                    <a href="/view-order/1" class="btn btn-primary">View</a>
+                                    <a href="/view-order/{{ $item->id}}" class="btn btn-primary">View</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -1,83 +1,71 @@
 @extends('layouts.main')
 @section('content')
-    <h1 class="fw-bold mb-4">Checkout</h1>
+    <h1 class="fw-bold mb-4"> {{ $title }} </h1>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-7">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="fw-bold">Billing Address</h4>
+                    <p class="fs-5 fw-semibold">Customer Information</p>
                     <hr>
-                    <form action="/place-order" method="post">
+                    <form action="/checkout" method="post">
                         @csrf
                         <div class="row">
-                            <div class="mb-3 col-lg-6">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{Auth::user()->name}}">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
+                                    @error('name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="mb-3 col-lg-6">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{Auth::user()->email}}">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="emaial" name="email" id="email" class="form-control" value="{{ old('mail') }}">
+                                    @error('email')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="no_hp" class="form-label">Phone</label>
-                                <input type="text" class="form-control" id="no_hp" name="no_hp">
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}">
+                                    @error('phone')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Address 1</label>
-                                <textarea class="form-control" id="address1" name="address1"></textarea>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <textarea name="address" id="address" class="form-control">{{ old('address') }}</textarea>
+                                    @error('address')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="address2" class="form-label">Address 2</label>
-                                <textarea class="form-control" id="address2" name="address2"></textarea>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="city" class="form-label">City</label>
+                                    <input type="text" name="city" id="city" class="form-control" value="{{ old('city') }}">
+                                    @error('city')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="mb-3 col-lg-6">
-                                <label for="city" class="form-label">City</label>
-                                <input type="text" class="form-control" id="city" name="city">
-                            </div>
-                            <div class="mb-3 col-lg-6">
-                                <label for="province" class="form-label">Province</label>
-                                <input type="text" class="form-control" id="province" name="province">
-                            </div>
-                            <div class="mb-3">
-                                <label for="pay_method" class="form-label">Payment Method</label>
-                                <select class="form-select" id="pay_method" name="pay_method">
-                                    <option value="bank_transfer">Bank Transfer</option>
-                                    <option value="cash_on_delivery">Cash on Delivery</option>
-                                </select>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="province" class="form-label">Province</label>
+                                    <input type="text" name="province" id="province" class="form-control" value="{{ old('province') }}">
+                                    @error('province')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn-pri">Place Order</button>
                     </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="fw-bold">Order Summary</h4>
-                    <hr>
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                            </tr>
-                            <tbody>
-                                @foreach ($carts as $cart)
-                                    <tr>
-                                        <td>{{ $cart->product->name }}</td>
-                                        <td>{{ $cart->quantity }}</td>
-                                        <td>Rp. {{ number_format($cart->product->price) }}</td>
-                                    </tr>
-                                @endforeach
-                                <tr class="table-dark">
-                                    <td colspan="2" class="text-star fw-bold">Subtotal</td>
-                                    <td>Rp. {{ number_format($subtotal) }}</td>
-                                </tr>
-                            </tbody>
-                        </thead>
-                    </table>
                 </div>
             </div>
         </div>

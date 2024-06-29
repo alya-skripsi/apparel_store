@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->string('city')->nullable();
             $table->string('province')->nullable();
             $table->unsignedBigInteger('subtotal')->default(0);
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default('0');
             $table->string('message')->nullable();
             $table->string('tracking_number')->nullable();
             $table->timestamps();

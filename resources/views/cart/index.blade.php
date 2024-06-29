@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-8">
-        <h2>Cart</h2>
+        <h2 class="fw-bold fs-4"> {{ $title }} </h2>
         <div class="card">
             <div class="card-body">
                 @if ($carts->isEmpty())
@@ -25,10 +25,10 @@
                                     <td>{{ $cart->product->name }}</td>
                                     <td>Rp. {{ number_format($cart->product->price) }}</td>
                                     <td>
-                                        <div class="input-group text-center mb-3" style="width: 130px;">
-                                            <button class="btn btn-secondary decre-btn" type="button">-</button>
-                                            <input type="text" name="qty" id="qty" class="form-control qty-input" value="{{ $cart->quantity }}">
-                                            <button class="btn btn-secondary incre-btn" type="button">+</button>
+                                        <div class="input-group text-center mb-3" style="width: 150px;">
+                                            <button class="btn-pri decre-btn" type="button">-</button>
+                                            <input type="text" name="qty" id="qty" class="form-control qty-input text-center" value="{{ $cart->quantity }}">
+                                            <button class="btn-pri incre-btn" type="button">+</button>
                                         </div>
                                     </td>
                                     <td>Rp. {{ number_format($cart->product->price * $cart->quantity) }}</td>

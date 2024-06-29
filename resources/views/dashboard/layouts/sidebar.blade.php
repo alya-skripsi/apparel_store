@@ -37,19 +37,19 @@
                     </button>
                     <div class="collapse" id="order-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-4 small">
-                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">All Orders</a></li>
-                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Add Order</a></li>
+                            <li><a href="/dashboard/orders" class="link-body-emphasis d-inline-flex text-decoration-none rounded {{ Request::is('dashboard/orders') ? 'active' : '' }}">All Orders</a></li>
+                            <li><a href="/dashboard/orders/history" class="link-body-emphasis d-inline-flex text-decoration-none rounded {{ Request::is('dashboard/orders/history') ? 'active' : '' }}">Order History</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item mb-2">
                     <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#customer-collapse" aria-expanded="false">
-                        <i class="fa-solid fa-user me-2"></i>Customers
+                        <i class="fa-solid fa-user me-2"></i>Users
                     </button>
                     <div class="collapse" id="customer-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-4 small">
-                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">All Customers</a></li>
-                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Add Customer</a></li>
+                            <li><a href="/dashboard/users" class="link-body-emphasis d-inline-flex text-decoration-none rounded {{ Request::is('dashboard/users') ? 'active' : '' }}">All Users</a></li>
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Groups</a></li>   
                         </ul>
                     </div>
                 </li>
