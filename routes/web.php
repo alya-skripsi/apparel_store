@@ -93,9 +93,7 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
 });
 
 // Checkout
-Route::middleware(['auth'])->group(function () {
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-});
+
 
 
 
