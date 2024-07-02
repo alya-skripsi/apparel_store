@@ -19,7 +19,7 @@
                     @can('admin')
                         <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                     @endcan
-                    <li><a class="dropdown-item" href="/my-order">My Order</a></li>
+                    <li><a class="dropdown-item" href="/orders">My Order</a></li>
                     <li><a class="dropdown-item" href="/setting">Setting</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>

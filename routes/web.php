@@ -10,6 +10,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentCallbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +95,21 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
 });
 
 // Checkout
+Route::middleware(['auth'])->group(function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::get('/provinces', [CheckoutController::class, 'getProvinces']);
+    Route::get('/cities/{provinceId}', [CheckoutController::class, 'getCities']);
+    Route::post('/cost', [CheckoutController::class, 'getCost']);
+});
+
+// Order
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::get('/orders/{order:id}', [OrderController::class, 'show'])->name('orders.show');
+Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
+
+
+// callback midtrans
+Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);
 
 
 
