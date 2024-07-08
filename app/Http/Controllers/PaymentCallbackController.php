@@ -11,7 +11,6 @@ class PaymentCallbackController extends Controller
     public function receive()
     {
         $callback = new CallbackService;
-        $notification = $callback->getNotification();
         $order = $callback->getOrder();
 
         if ($callback->isSuccess()) {
