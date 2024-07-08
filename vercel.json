@@ -18,8 +18,8 @@
             "dest": "/js/$1"
         },
         {
-            "src": "/images/(.*)",
-            "dest": "/images/$1"
+            "src": "/image/(.*)",
+            "dest": "/image/$1"
         },
         {
             "src": "/storage/(.*)",
