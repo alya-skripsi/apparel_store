@@ -56,9 +56,9 @@ class CallbackService extends Midtrans
 
     protected function _createLocalSignatureKey()
     {
-        $orderId = $this->order->number;
+        $orderId = $this->order->tracking_number;
         $statusCode = $this->notification->status_code;
-        $grossAmount = $this->order->total_price;
+        $grossAmount = $this->order->subtotal;
         $serverKey = $this->serverKey;
         $input = $orderId . $statusCode . $grossAmount . $serverKey;
         $signature = openssl_digest($input, 'sha512');

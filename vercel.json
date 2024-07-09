@@ -1,9 +1,30 @@
 {
     "version": 2,
+    "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.3.1" }
+        "api/index.php": { "runtime": "vercel-php@0.6.1" }
     },
     "routes": [
+        {
+            "src": "/build/(.*)",
+            "dest": "/build/$1"
+        },
+        {
+            "src": "/css/(.*)",
+            "dest": "/css/$1"
+        },
+        {
+            "src": "/js/(.*)",
+            "dest": "/js/$1"
+        },
+        {
+            "src": "/image/(.*)",
+            "dest": "/image/$1"
+        },
+        {
+            "src": "/storage/(.*)",
+            "dest": "/storage/$1"
+        },
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
@@ -12,20 +33,24 @@
     "env": {
         "APP_NAME": "Apparel Store",
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
-        "APP_URL": "https://apparelstore.vercel.app",
+        "APP_DEBUG": "true",
+        "APP_URL": "https://apparel-store.vercel.app",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
         "APP_ROUTES_CACHE": "/tmp/routes.php",
         "APP_SERVICES_CACHE": "/tmp/services.php",
-        
+        "VIEW_COMPILED_PATH": "/tmp/views",
+        "SSR_TEMP_PATH": "/tmp/ssr",
+
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
-        "VIEW_COMPILED_PATH": "/tmp/views",
-        "SSR_TEMP_PATH": "/tmp/ssr",
-        "NODE_PATH": "node"
+        "NODE_PATH": "node",
+
+        "DB_CONNECTION": "mysql",
+        "DB_PORT": "3306",
+        "MYSQL_ATTR_SSL_CA": "/etc/pki/tls/certs/ca-bundle.crt"
     }
 }
