@@ -29,11 +29,11 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.categories.create', [
-            'title' => 'Create Category',
-            'active' => 'categories',
-            'categories' => Category::all()
-        ]);
+        // return view('dashboard.categories.create', [
+        //     'title' => 'Create Category',
+        //     'active' => 'categories',
+        //     'categories' => Category::all()
+        // ]);
     }
 
     /**
@@ -44,12 +44,12 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create($request->validate([
-            'name' => 'required|max:255',
-            'slug' => 'required|unique:categories'
-        ]));
+        // Category::create($request->validate([
+        //     'name' => 'required|max:255',
+        //     'slug' => 'required|unique:categories'
+        // ]));
 
-        return redirect('/dashboard/categories')->with('success', 'Category has been added successfully');
+        // return redirect('/dashboard/categories')->with('success', 'Category has been added successfully');
     }
 
     /**
@@ -71,12 +71,12 @@ class AdminCategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('dashboard.categories.edit', [
-            'title' => 'Edit Category',
-            'active' => 'categories',
-            'category' => $category,
-            'categories' => Category::all()
-        ]);
+        // return view('dashboard.categories.edit', [
+        //     'title' => 'Edit Category',
+        //     'active' => 'categories',
+        //     'category' => $category,
+        //     'categories' => Category::all()
+        // ]);
     }
 
     /**
@@ -88,12 +88,12 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category->update($request->validate([
-            'name' => 'required|max:255',
-            'slug' => 'required|unique:categories,slug,' . $category->id
-        ]));
+        // $category->update($request->validate([
+        //     'name' => 'required|max:255',
+        //     'slug' => 'required|unique:categories,slug,' . $category->id
+        // ]));
 
-        return redirect('/dashboard/categories')->with('success', 'Category has been updated successfully');
+        // return redirect('/dashboard/categories')->with('success', 'Category has been updated successfully');
     }
 
     /**
@@ -104,8 +104,8 @@ class AdminCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
+        // $category->delete();
 
-        return redirect('/dashboard/categories')->with('success', 'Category has been deleted successfully');
+        // return redirect('/dashboard/categories')->with('success', 'Category has been deleted successfully');
     }
 }
