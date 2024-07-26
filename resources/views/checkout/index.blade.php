@@ -1,140 +1,154 @@
 @extends('layouts.main')
 @section('content')
-<h1 class="fw-bold mb-4"> {{ $title }} </h1>
-<div class="row">
-    <div class="col-lg-7">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="fw-semibold">Order Summary</h5>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($carts as $cart)
-                        <tr>
-                            <td>{{ $cart->product->name }}</td>
-                            <td>Rp. {{ number_format($cart->product->price) }}</td>
-                            <td>{{ $cart->quantity }}</td>
-                            <td>Rp. {{ number_format($cart->product->price * $cart->quantity) }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th colspan="3">Subtotal</th>
-                            <th>Rp. {{ number_format($subtotal) }}</th>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-5">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="fw-semibold">Customer Information</h5>
-                <form id="checkout-form" action="{{ route('orders.store') }}" method="post">
-                    @csrf
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
-                                @error('name')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
-                                @error('email')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Phone</label>
-                                <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}">
-                                @error('phone')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Address</label>
-                                <textarea name="address" id="address" class="form-control">{{ old('address') }}</textarea>
-                                @error('address')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="province" class="form-label">Province</label>
-                                <input type="text" name="province" id="province" class="form-control" value="{{ old('province') }}">
-                                <ul id="province-list" class="list-group"></ul>
-                                @error('province')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="city" class="form-label">City</label>
-                                <select id="city" name="city" class="form-control" disabled>
-                                    <option value="">Select City</option>
-                                </select>
-                                @error('city')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="mb-3">
-                                <label for="courier" class="form-label">Courier</label>
-                                <select id="courier" name="courier" class="form-control" disabled>
-                                    <option value="jne">JNE</option>
-                                    <option value="tiki">TIKI</option>
-                                    <option value="pos">POS</option>
-                                </select>
-                                @error('courier')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div id="cost" class="mt-4"></div>
-                        @error('costoption')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-
-                        <div class="mb-3">
-                            <label for="total_price" class="form-label">Total</label>
-                            <input type="text" name="total_price_show" id="total_price_show" class="form-control" value="Rp. {{ number_format($subtotal) }}" disabled>
-                            <input type="hidden" name="total_price" id="total_price" class="form-control" value="{{ $subtotal }}">
-                            @error('total_price')
-                            <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="col-lg-12">
-                            <button type="submit" class="btn-pri text-decoration-none" id="payment-button">Proceed to Payment</button>
+    {{-- Checkout --}}
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-body card-bg-sec p-5 rounded">
+                            <h2 class="fw-bold">Checkout</h2>
                         </div>
                     </div>
-                </form>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-lg-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="fw-semibold">Customer Information</h5>
+                            <form id="checkout-form" action="{{ route('orders.store') }}" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Name</label>
+                                            <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
+                                            @error('name')
+                                            <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
+                                            @error('email')
+                                            <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="phone" class="form-label">Phone</label>
+                                            <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}">
+                                            @error('phone')
+                                            <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="address" class="form-label">Address</label>
+                                            <textarea name="address" id="address" class="form-control">{{ old('address') }}</textarea>
+                                            @error('address')
+                                            <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="province" class="form-label">Province</label>
+                                            <input type="text" name="province" id="province" class="form-control" value="{{ old('province') }}">
+                                            <ul id="province-list" class="list-group"></ul>
+                                            @error('province')
+                                            <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="city" class="form-label">City</label>
+                                            <select id="city" name="city" class="form-control" disabled>
+                                                <option value="">Select City</option>
+                                            </select>
+                                            @error('city')
+                                            <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="courier" class="form-label">Courier</label>
+                                            <select id="courier" name="courier" class="form-control" disabled>
+                                                <option value="jne">JNE</option>
+                                                <option value="tiki">TIKI</option>
+                                                <option value="pos">POS</option>
+                                            </select>
+                                            @error('courier')
+                                            <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div id="cost" class="mt-4"></div>
+                                    @error('costoption')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+            
+                                    <div class="mb-3">
+                                        <label for="total_price" class="form-label">Total</label>
+                                        <input type="text" name="total_price_show" id="total_price_show" class="form-control" value="Rp. {{ number_format($subtotal) }}" disabled>
+                                        <input type="hidden" name="total_price" id="total_price" class="form-control" value="{{ $subtotal }}">
+                                        @error('total_price')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+            
+                                    <div class="col-lg-12">
+                                        <button type="submit" class="border-0 btn-pri text-decoration-none" id="payment-button">Proceed to Payment</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="fw-semibold">Cart Summary</h5>
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    @foreach ($carts as $cart)
+                                    <li class="list-group-item d-flex align-items-center justify-content-between">
+                                        <div class="me-auto">
+                                            <span>{{ $cart->product->name }}</span>
+                                        </div>
+                                        <div class="mx-auto">
+                                            <span class="text-center">{{ $cart->quantity }}</span>
+                                        </div>
+                                        <div>
+                                            <span>Rp. {{ number_format($cart->product->price * $cart->quantity) }}</span>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                    <li class="list-group-item d-flex align-items-center justify-content-between">
+                                        <div class="me-auto">
+                                            <span class="fw-bold">Subtotal</span>
+                                        </div>
+                                        <div>
+                                            <span class="fw-bold">Rp. {{ number_format($subtotal) }}</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+    {{-- Checkout --}}
 @endsection
 
 @section('scripts')

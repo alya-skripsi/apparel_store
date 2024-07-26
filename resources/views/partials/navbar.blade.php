@@ -1,10 +1,12 @@
 {{-- Navbar --}}
-<nav class="py-2">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center">
-        <a href="/" class="d-flex align-items-center mb-lg-0 me-lg-auto text-decoration-none fw-bold logo">Apparel<span>Store.</span></a>
-        <div class="text-end d-flex align-items-center">
-            <a href="/wishlist"><i class="fa-regular fa-heart icon"></i></a>
-            <a href="/cart"><i class="fas fa-shopping-cart icon"></i></a>
+<nav class="navbar py-2 border-bottom py-2">
+    <div class="container d-flex flex-wrap justify-content-between">
+        <a href="/" class="d-flex align-items-center mb-lg-0 me-lg-auto navbar-brand text-decoration-none fs-1 fw-bold">
+            Apparel<span>Store.</span>
+        </a>
+        <ul class="nav d-flex align-items-center">
+            <li class="nav-item"><a class="nav-link-1" href="/wishlist"><i class="fa-solid fa-heart"></i></a></li>
+            <li class="nav-item"><a class="nav-link-1 mx-4" href="/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
             @auth
             <div class="dropdown">
                 <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -15,7 +17,7 @@
                         <img src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}" class="rounded-circle" width="40" height="40" alt="{{ auth()->user()->name }}">
                     @endif
                 </a>
-                <ul class="dropdown-menu dropdown-menu-lg-end">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
                     @can('admin')
                         <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                     @endcan
@@ -33,32 +35,31 @@
             @else
             <a href="/login" class="border-0 text-decoration-none btn-pri">Sign In</a>
             @endauth
-        </div>
-    </div>
-</nav>
-<header class="py-1 bg-sec border-bottom">
-    <div class="container d-flex flex-wrap justify-content-center">
-        <ul class="nav me-auto">
-            <li class="nav-item"><a href="/about" class="nav-link px-2 text-white">About Us</a></li>
-            <li class="nav-item"><a href="/products" class="nav-link px-2 text-white">Products</a></li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Category</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Men</a></li>
-                    <li><a class="dropdown-item" href="#">Women</a>
-                    <li><a class="dropdown-item" href="#">Kids</a>
-                    <li><a class="dropdown-item" href="#">Accesories</a>
-                    <li><a class="dropdown-item" href="#">Footwear</a>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Collection</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Summer</a></li>
-                    <li><a class="dropdown-item" href="#">Holiday</a></li>
-                    <li><a class="dropdown-item" href="#">Limited Edition</a></li>
-                </ul>
-            </li>
         </ul>
     </div>
+</nav>
+<header class="py-2 mb-4 bg-nav-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <form action="/products" class="col-12 col-lg-auto mb-3 mb-lg-0 input-group" role="search">
+                    @if(request('category'))
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+                    <input type="text" class="form-control" placeholder="Search product..." name="search" value="{{ request('search') }}">
+                    <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <div class="col-12 col-lg-6">
+                <ul class="nav col-12 col-lg-auto ms-lg-auto justify-content-between mb-md-0">
+                    <li><a href="/about" class="nav-link px-2 text-white">About Us</a></li>
+                    <li><a href="/products" class="nav-link px-2 text-white">Products</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">New Arrival</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Best Seller</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </header>
+{{-- Navbar --}}
