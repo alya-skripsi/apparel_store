@@ -68,10 +68,15 @@
             <hr class="my-3">
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        <i class="fa-solid fa-gear"></i>
-                        Settings
-                    </a>
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#settings-collapse" aria-expanded="false">
+                        <i class="fa-solid fa-gear"></i>Settings
+                    </button>
+                    <div class="collapse" id="settings-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-4 small">
+                            <li><a href="/dashboard/user-profile" class="link-body-emphasis d-inline-flex text-decoration-none rounded {{ Request::is('dashboard/user-profile') ? 'active' : '' }}">My Profile</a></li>
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Change Password</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <form action="/logout" method="post">

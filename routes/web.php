@@ -11,6 +11,8 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\PaymentCallbackController;
 
 /*
@@ -92,6 +94,7 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
     });
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('products', DashboardProductController::class);
+    Route::get('user-profile',[DashboardProfileController::class, 'index']);
 });
 
 // Checkout
@@ -108,8 +111,14 @@ Route::get('/orders/{order:id}', [OrderController::class, 'show'])->name('orders
 Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
 
 
-// callback midtrans
+// Callback midtrans
 Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);
+
+// Profile
+Route::middleware(['auth'])->group(function () {
+    // User Profile
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+});
 
 
 

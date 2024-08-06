@@ -3,8 +3,8 @@
     {{-- Breadcrumb --}}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="/products?category={{ $product->category->slug }}"> {{ $product->category->name }} </a></li>
+        <li class="breadcrumb-item"><a href="/" class="text-decoration-none"">Home</a></li>
+        <li class="breadcrumb-item"><a href="/products?category={{ $product->category->slug }}" class="text-decoration-none""> {{ $product->category->name }} </a></li>
         <li class="breadcrumb-item active"> {{ $product->name}} </li>
         </ol>
     </nav>
