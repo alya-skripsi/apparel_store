@@ -34,12 +34,6 @@
                                 <div class="col-6 col-md-6 col-lg-7">
                                     <div class="d-flex">
                                         <input type="hidden" value="{{ $cart->id }}">
-                                        @if ($cart->image)
-                                            <img src="{{ asset('storage/' . $cart->image) }}" alt="{{ $cart->name }}" class="img-fluid">
-                                            {{-- <img src="{{ asset('storage/products/' . $cart->product->image) }}" alt="{{ $cart->product->name }}" class="img-fluid me-1" style="width: 100px;"> --}}
-                                        @else
-                                            <img src="https://dummyimage.com/100x100/333/fff.png" alt="" class="img-fluid me-1">
-                                        @endif
                                         <div class="ms-3">
                                             <h6 class="mb-0">{{ $cart->product->name }}</h6>
                                             <p class="mb-3">Rp. {{ number_format($cart->product->price) }}</p>
