@@ -163,7 +163,7 @@
     }
 
     $(document).ready(function() {
-        $('#province').on('keyup', function() {
+        $('#province').on('blur', function() {
             let query = $(this).val();
             if (query.length > 2) {
                 $.ajax({
