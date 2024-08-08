@@ -76,9 +76,9 @@
                                     <div class="card h-100">
                                         <div class="card-img">
                                             @if($p->image)
-                                                <img src="{{ asset('storage/images/'.$p->image) }}" alt="product" class="img-fluid card-img-top">
+                                                <img src="{{ asset('storage/' . $p->image) }}" alt="{{ $p->name }}" class="img-fluid">
                                             @else
-                                                <img src="https://dummyimage.com/300x300/333/fff.png" alt="product" class="img-fluid card-img-top">
+                                                <img src="https://dummyimage.com/315x415/333/fff.png" alt="product" class="img-fluid card-img-top">
                                             @endif
                                         </div>
                                         <div class="card-body">

@@ -16,7 +16,7 @@ class ProductController extends Controller
             'active' => 'products',
             'categories' => $categories,
             'category' => Category::firstWhere('slug', request('category')),
-            'products' => Product::latest()->filter(request(['search', 'category']))->paginate(8)->withQueryString()
+            'products' => Product::latest()->filter(request(['search', 'category']))->paginate(9)->withQueryString()
         ]);
     }
 
