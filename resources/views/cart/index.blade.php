@@ -35,7 +35,8 @@
                                     <div class="d-flex">
                                         <input type="hidden" value="{{ $cart->id }}">
                                         @if ($cart->image)
-                                            <img src="{{ asset('storage/products/' . $cart->product->image) }}" alt="{{ $cart->product->name }}" class="img-fluid me-1" style="width: 100px;">
+                                            <img src="{{ asset('storage/' . $cart->image) }}" alt="{{ $cart->name }}" class="img-fluid">
+                                            {{-- <img src="{{ asset('storage/products/' . $cart->product->image) }}" alt="{{ $cart->product->name }}" class="img-fluid me-1" style="width: 100px;"> --}}
                                         @else
                                             <img src="https://dummyimage.com/100x100/333/fff.png" alt="" class="img-fluid me-1">
                                         @endif
