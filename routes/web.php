@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardProfileController;
+use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\PaymentCallbackController;
 
 /*
@@ -94,6 +95,7 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
     });
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('products', DashboardProductController::class);
+    Route::resource('orders',DashboardOrderController::class);
     Route::get('user-profile',[DashboardProfileController::class, 'index']);
 });
 
