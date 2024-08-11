@@ -14,6 +14,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.PORT }}
-          script |
+          script: |
             cd /var/www/apparel_store
             git pull origin main
