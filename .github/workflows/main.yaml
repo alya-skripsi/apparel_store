@@ -1,0 +1,19 @@
+on:
+  push:
+    branches: [main]
+
+name: Deploy to sam server
+jobs:
+  deploy:
+    runs-on: ubuntu
+    steps:
+      - name: Pull code to server
+        uses: appleboy/ssh-action@1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script |
+            cd /var/www/apparel_store
+            git pull origin main
