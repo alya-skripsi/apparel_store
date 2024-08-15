@@ -2,13 +2,13 @@ on:
   push:
     branches: [main]
 
-name: Deploy to sam server
+name: Deploy Website On Push!
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Pull code to server
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Pull Code to server
+        uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
