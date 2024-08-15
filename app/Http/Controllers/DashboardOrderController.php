@@ -48,7 +48,9 @@ class DashboardOrderController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('dashboard.orders.show',[
+            'order' => Order::find($id)
+        ]);
     }
 
     /**

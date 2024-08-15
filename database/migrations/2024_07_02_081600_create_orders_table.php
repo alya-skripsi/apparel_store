@@ -24,7 +24,6 @@ class CreateOrdersTable extends Migration
             $table->string('city')->nullable();
             $table->string('province')->nullable();
             $table->unsignedBigInteger('subtotal')->default(0);
-            $table->tinyInteger('status')->default('0');
             $table->string('message')->nullable();
             $table->string('tracking_number')->nullable();
             $table->enum('payment_status', ['1', '2', '3'])->comment('1=menunggu pembayaran, 2=sudah dibayar, 3=kadaluarsa');

@@ -15,6 +15,10 @@
                             <td><b>#{{ $order->tracking_number }}</b></td>
                         </tr>
                         <tr>
+                            <td>Customer</td>
+                            <td><b>{{ $order->name }}</b></td>
+                        </tr>
+                        <tr>
                             <td>Total</td>
                             <td><b>Rp {{ number_format($order->subtotal, 2, ',', '.') }}</b></td>
                         </tr>
@@ -22,11 +26,11 @@
                             <td>Status</td>
                             <td><b>
                                     @if ($order->payment_status == 1)
-                                    Waitting Payment
+                                        <span class="badge text-bg-danger">Unpaid</span>
                                     @elseif ($order->payment_status == 2)
-                                    Paid
+                                        <span class="badge text-bg-success">Paid</span>
                                     @else
-                                    Expired
+                                        <span class="badge text-bg-success">Expired</span>
                                     @endif
                                 </b></td>
                         </tr>

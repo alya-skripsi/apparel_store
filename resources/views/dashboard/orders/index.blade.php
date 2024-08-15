@@ -28,7 +28,15 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $order->name }}</td>
                         <td>Rp. {{ number_format($order->subtotal, 0, ',', '.') }}</td>
-                        <td>{{ $order->status }}</td>
+                        <td>
+                            @if ($order->payment_status == 1)
+                                <span class="badge text-bg-warning">Waiting for Payment</span>
+                            @elseif ($order->payment_status == 2)
+                                <span class="badge text-bg-success">Paid</span>
+                            @else
+                                <span class="badge bg-dark ">Expired</span>
+                            @endif
+                        </td>
                         <td>
                             <a href="/dashboard/orders/{{ $order->id }}" class="btn btn-info btn-sm">Detail</a>
                             <form action="/dashboard/orders/{{ $order->id }}" method="post" class="d-inline">
