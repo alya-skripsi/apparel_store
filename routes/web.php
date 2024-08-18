@@ -96,7 +96,7 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('products', DashboardProductController::class);
     Route::resource('orders',DashboardOrderController::class);
-    Route::get('user-profile',[DashboardProfileController::class, 'index']);
+    Route::resource('user-profile',DashboardProfileController::class);
 });
 
 // Checkout
